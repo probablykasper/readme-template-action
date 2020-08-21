@@ -1,0 +1,11 @@
+{
+  "name": "readme-template",
+  "main": "index.js",
+  "scripts" :{
+    "test": "MODE=test node ."
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0"
+  }
+}
