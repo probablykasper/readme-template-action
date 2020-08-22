@@ -83,6 +83,7 @@ async function run() {
     const starredRepos = await queries.getRepos(`
       first: 5,
       privacy: PUBLIC,
+      ownerAffiliations:[OWNER],
       orderBy: { field:STARGAZERS, direction: DESC }
     `)
     outputStr = injectLoop(outputStr, '5_MOST_STARRED_REPOS', starredRepos)

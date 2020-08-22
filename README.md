@@ -49,10 +49,26 @@ jobs:
 
 TEMPLATE.md:
 
-```markdown
-# Test
-/```
-```
+````markdown
+My most starred repos:
+| Stars | Name | Description |
+| ----- | ---- | ----------- |
+{{ loop 5_MOST_STARRED_REPOS }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end 5_MOST_STARRED_REPOS }}
+````
+
+This generates the following README.md in my case:
+
+My most starred repos:
+
+|Stars|Name|Description|
+|---|---|---|
+| 101 | [csutter/chester-atom-syntax](https://github.com/csutter/chester-atom-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
+| 10 | [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
+| 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | null |
+| 2 | [probablykasper/cryp](https://github.com/probablykasper/cryp) | Cryptocurrency portfolio tracker |
+| 1 | [probablykasper/notifier](https://github.com/probablykasper/notifier) | Flutter app for scheduling notifications |
 
 ## Variables
 
