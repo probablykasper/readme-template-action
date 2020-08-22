@@ -2,7 +2,7 @@
   "name": "readme-template",
   "main": "index.js",
   "scripts": {
-    "test": "export $(cat .env | xargs) && INPUT_TEMPLATE=EXAMPLE_TEMPLAte.md INPUT_OUTPUT=OUTPUT.md node ."
+    "test": "export $(cat .env | xargs) && INPUT_TEMPLATE=EXAMPLE_TEMPLATE.md INPUT_OUTPUT=EXAMPLE_OUTPUT.md node ."
   },
   "dependencies": {
     "@actions/core": "^1.2.4",

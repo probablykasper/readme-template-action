@@ -23,34 +23,42 @@ module.exports = {
 // {{ :TEMPLATE }}
 ```
 
+## Specific repos
+
 | Stars       | Name       | Description       |
 | ----------- | ---------- | ----------------- |
 {{ loop CUSTOM_PINNED_REPOS }}
-| {{ REPO_STARS }} | {{ REPO_OWNER_USERNAME }} | {{ REPO_DESCRIPTION }} |
-{{ end }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end CUSTOM_PINNED_REPOS }}
 
-- USERNAME: {{ USERNAME }}
-- NAME: {{ NAME }}
-- EMAIL: {{ EMAIL }}
-- USER_ID: {{ USER_ID }}
-- BIO: {{ BIO }}
-- COMPANY: {{ COMPANY }}
-- LOCATION: {{ LOCATION }}
-- TWITTER_USERNAME: {{ TWITTER_USERNAME }}
-- AVATAR_URL: {{ AVATAR_URL }}
-- WEBSITE_URL: {{ WEBSITE_URL }}
-- SIGNUP_DATE: {{ SIGNUP_DATE }}
-  - SIGNUP_YYYY: {{ SIGNUP_YYYY }}
-  - SIGNUP_M: {{ SIGNUP_M }}
-  - SIGNUP_MMM: {{ SIGNUP_MMM }}
-  - SIGNUP_MMMM: {{ SIGNUP_MMMM }}
-  - SIGNUP_D: {{ SIGNUP_D }}
-  - SIGNUP_DO: {{ SIGNUP_DO }}
+## Me
 
-Signed up {{ SIGNUP_MMMM }} {{ SIGNUP_DO }}, {{ SIGNUP_YYYY }}
+USERNAME: {{ USERNAME }}
+NAME: {{ NAME }}
+EMAIL: {{ EMAIL }}
+USER_ID: {{ USER_ID }}
+BIO: {{ BIO }}
+COMPANY: {{ COMPANY }}
+SIGNUP_DATE: {{ SIGNUP_DATE }}
+LOCATION: {{ LOCATION }}
+TWITTER_USERNAME: {{ TWITTER_USERNAME }}
+AVATAR_URL: {{ AVATAR_URL }}
+WEBSITE_URL: {{ WEBSITE_URL }}
+SIGNUP_YYYY: {{ SIGNUP_YYYY }}
+SIGNUP_M: {{ SIGNUP_M }}
+SIGNUP_MMM: {{ SIGNUP_MMM }}
+SIGNUP_MMMM: {{ SIGNUP_MMMM }}
+SIGNUP_D: {{ SIGNUP_D }}
+SIGNUP_DO: {{ SIGNUP_DO }}
+TOTAL_REPOS_SIZE_KB: {{ TOTAL_REPOS_SIZE_KB }}
+TOTAL_REPOS_SIZE_MB: {{ TOTAL_REPOS_SIZE_MB }}
+TOTAL_REPOS_SIZE_GB: {{ TOTAL_REPOS_SIZE_GB }}
+TOTAL_REPOSITORIES: {{ TOTAL_REPOSITORIES }}
+
+## 5 most starred repos
 
 |Stars|Name|Description|
 |---|---|---|
-{{ loop MOST_STARRED_REPOS }}
-| {{ REPO_STARS }} | {{ NAME }} | {{ REPO_DESCRIPTION }} |
-{{ end }}
+{{ loop 5_MOST_STARRED_REPOS }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end 5_MOST_STARRED_REPOS }}

@@ -14,8 +14,11 @@ By default, it takes `TEMPLATE.md` and outputs `README.md`.
 | template     | string | `"TEMPLATE.md"` | Template file path
 | readme       | string | `"README.md"`   | Output file path
 
-## Example workflow
-```
+## Example usage
+
+Workflow:
+
+```yml
 on:
     schedule:
         - cron: '0 */2 * * *' # every 2 hours
@@ -44,19 +47,82 @@ jobs:
           fi
 ```
 
+TEMPLATE.md:
+
+```markdown
+# Test
+/```
+```
+
+## Variables
+
+These are the variables you can put into your template file:
+| Variable                  | Example |
+| ------------------------- | ------- |
+| {{ USERNAME }}            | probablykasper |
+| {{ NAME }}                | Kasper |
+| {{ EMAIL }}               | email@example.com |
+| {{ USER_ID }}             | MDQ6VXNlcjExMzE1NDky |
+| {{ BIO }}                 | Fullstack developer from Norway |
+| {{ COMPANY }}             | Microscopicsoft |
+| {{ SIGNUP_DATE }}         | 2015-03-04T14:48:35Z |
+| {{ LOCATION }}            | Norway |
+| {{ TWITTER_USERNAME }}    | probablykasper |
+| {{ AVATAR_URL }}          | https://avatars0.githubusercontent.com/u/11315492u=c501da00e9b817ffc78faab6c630f236ac2738cf&v=4 |
+| {{ WEBSITE_URL }}         | https://kasper.space/ |
+| {{ SIGNUP_YYYY }}         | 2015 |
+| {{ SIGNUP_M }}            | 3 |
+| {{ SIGNUP_MMM }}          | Mar |
+| {{ SIGNUP_MMMM }}         | March |
+| {{ SIGNUP_D }}            | 4 |
+| {{ SIGNUP_DO }}           | 4th |
+| {{ TOTAL_REPOS_SIZE_KB }} | 707403 |
+| {{ TOTAL_REPOS_SIZE_MB }} | 707.4 |
+| {{ TOTAL_REPOS_SIZE_GB }} | 0.71 |
+| {{ TOTAL_REPOSITORIES }}  | 70740 |
+
+## Loops
+
+The syntax for loops looks like this:
+
+TBA
+
+| Variable                  | Example |
+| ------------------------- | ------- |
+| {{ REPO_NAME }}           | cpc
+| {{ REPO_FULL_NAME }}      | probablykasper/cpc
+| {{ REPO_OWNER_USERNAME }} | probablykasper
+| {{ REPO_DESCRIPTION }}    | Text calculator with support for units and conversion |
+| {{ REPO_URL }}            | https://github.com/probablykasper/cpc
+| {{ REPO_HOMEPAGE_URL }}   | https://github.com/probablykasper/cpc#cpc
+| {{ REPO_CREATED_DATE }}   | 2019-12-05T22:45:04Z
+| {{ REPO_PUSHED_DATE }}    | 2020-08-20T20:13:22Z
+| {{ REPO_UPDATED_DATE }}   | 2020-08-20T20:13:25Z
+| {{ REPO_FORK_COUNT }}     | 0
+| {{ REPO_ID }}             | MDEwOlJlcG9zaXRvcnkyMjYyMDE5NTU=
+| {{ REPO_STARS }}          | 0
+| {{ REPO_LANGUAGE }}       | Rust
+| {{ REPO_SIZE_KB }}        | 1268285
+| {{ REPO_SIZE_MB }}        | 1268.3
+| {{ REPO_SIZE_GB }}        | 1.27
+
 ## Dev instructions
 
 ### Test offline
+
 First, to get started:
+
 1. Install [Node.js](https://nodejs.org/)
 2. Run `npm install`
 3. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate a GitHub personal access token with the `read:user` scope.
 4. Create a `.env` file contianing the token:
-```
+
+```env
 INPUT_GITHUB_TOKEN=mytoken
 ```
 
 Now you can test the action by running the following command:
-```
+
+```sh
 npm run test
 ```

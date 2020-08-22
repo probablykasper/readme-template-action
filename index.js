@@ -50,9 +50,10 @@ function inject(str, values) {
 }
 
 function injectLoop(str, name, valuesList) {
-  const parsed = parseBlock(str, `{{ loop ${name} }}`, '{{ end }}')
+  const parsed = parseBlock(str, `{{ loop ${name} }}`, `{{ end ${name} }}`)
   if (!parsed) return str
   let newBlock = ''
+  console.log(parsed.block)
   for (const values of valuesList) {
     newBlock += inject(parsed.block, values)
   }
@@ -77,15 +78,14 @@ async function run() {
     const user = await queries.getUser()
     console.log('Injecting user data')
     outputStr = inject(outputStr, user)
-    console.log(user)
 
-    console.log('Fetching 5 most starred repos')
+    console.log('Fetching 5_MOST_STARRED_REPOS')
     const starredRepos = await queries.getRepos(`
-      first: 100,
+      first: 5,
       privacy: PUBLIC,
       orderBy: { field:STARGAZERS, direction: DESC }
     `)
-    outputStr = injectLoop(outputStr, starredRepos)
+    outputStr = injectLoop(outputStr, '5_MOST_STARRED_REPOS', starredRepos)
 
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'specificRepos') {
