@@ -1,12 +1,15 @@
 {
   "name": "readme-template",
   "main": "index.js",
-  "scripts" :{
-    "test-no-env": "INPUT_TEMPLATE=TEST.md INPUT_OUTPUT=TEST_OUTPUT.md node .",
-    "test": "export $(cat .env | xargs) && INPUT_TEMPLATE=TEST.md INPUT_OUTPUT=TEST_OUTPUT.md node ."
+  "scripts": {
+    "test": "export $(cat .env | xargs) && INPUT_TEMPLATE=EXAMPLE_TEMPLAte.md INPUT_OUTPUT=OUTPUT.md node ."
   },
   "dependencies": {
     "@actions/core": "^1.2.4",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "require-from-string": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
   }
 }
