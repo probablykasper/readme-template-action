@@ -16,12 +16,15 @@ function parseBlock(str, openStr, closeStr) {
 
   let beforeBlock = str.substring(0, openIndex)
   beforeBlock = trimRightChar(beforeBlock, ' ')
-  beforeBlock = trimRightChar(beforeBlock, '\n')
+  if (beforeBlock.endsWith('\n')) {
+    beforeBlock = beforeBlock.substring(0, beforeBlock.length - 1)
+  }
   let block = str.substring(openIndex+openStr.length, endIndex)
   block = trimRightChar(block, ' ')
-  block = trimRightChar(block, '\n')
+  if (block.endsWith('\n')) {
+    block = block.substring(0, block.length - 1)
+  }
   let afterBlock = str.substring(endIndex+closeStr.length)
-  
   return { beforeBlock, block, afterBlock }
 }
 
@@ -49,15 +52,18 @@ function inject(str, values) {
   return str
 }
 
-function injectLoop(str, name, valuesList) {
+async function injectLoop(str, name, valuesListArg) {
+  console.log({str, name, valuesListArg})
   const parsed = parseBlock(str, `{{ loop ${name} }}`, `{{ end ${name} }}`)
   if (!parsed) return str
+  let valuesList = valuesListArg
+  if (typeof valuesListArg === 'function') valuesList = await valuesListArg()
   let newBlock = ''
-  console.log(parsed.block)
   for (const values of valuesList) {
     newBlock += inject(parsed.block, values)
   }
-  return parsed.beforeBlock + newBlock + parsed.afterBlock
+  console.log(parsed)
+  return parsed.beforeBlock + newBlock + injectLoop(parsed.afterBlock, name, valuesList)
 }
 
 run()

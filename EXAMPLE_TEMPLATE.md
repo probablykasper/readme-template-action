@@ -1,4 +1,4 @@
-# Test
+# Example
 
 ```js
 // {{ TEMPLATE: }}
@@ -25,11 +25,18 @@ module.exports = {
 
 ## Specific repos
 
-| Stars       | Name       | Description       |
+| ⭐️Stars   | 📦Repo    | 📚Description |
 | ----------- | ---------- | ----------------- |
 {{ loop CUSTOM_PINNED_REPOS }}
 | {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end CUSTOM_PINNED_REPOS }}
+
+## 5 most starred repos
+
+{{ loop 5_MOST_STARRED_REPOS }}
+⭐️ {{ REPO_STARS }} [{{ REPO_FULL_NAME }}]({{ REPO_URL }}): {{ REPO_DESCRIPTION }}
+
+{{ end 5_MOST_STARRED_REPOS }}
 
 ## Me
 
@@ -54,11 +61,3 @@ module.exports = {
   - **TOTAL_REPOS_SIZE_MB**: {{ TOTAL_REPOS_SIZE_MB }}
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}
 - **TOTAL_REPOSITORIES**: {{ TOTAL_REPOSITORIES }}
-
-## 5 most starred repos
-
-| Stars | Name | Description |
-| ----- | ---- | ----------- |
-{{ loop 5_MOST_STARRED_REPOS }}
-| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
-{{ end 5_MOST_STARRED_REPOS }}
