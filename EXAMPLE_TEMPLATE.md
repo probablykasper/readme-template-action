@@ -3,9 +3,14 @@
 ```js
 // {{ TEMPLATE: }}
 module.exports = {
-    MOST_STARRED_REPOS: {
+    C2_MOST_STARRED_REPOS: {
         type: 'repos',
-        params: 'first: 5, orderBy: { field:STARGAZERS, direction: DESC }, privacy: PUBLIC',
+        params: `
+            first: 2,
+            privacy: PUBLIC,
+            ownerAffiliations:[OWNER],
+            orderBy: { field:STARGAZERS, direction: DESC },
+        `,
     },
     CUSTOM_PINNED_REPOS: {
         type: 'specificRepos',
@@ -23,7 +28,7 @@ module.exports = {
 // {{ :TEMPLATE }}
 ```
 
-## Specific repos
+## Specific repos (custom)
 
 | ⭐️Stars   | 🗓Created | 📦Repo    | 📚Description |
 | --------- | -------- | ----------- | -------------- |
@@ -31,20 +36,12 @@ module.exports = {
 | {{ REPO_STARS }} | {{ REPO_CREATED_DATE }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end CUSTOM_PINNED_REPOS }}
 
-## 3 most starred repos table
+## 2 most starred repos list (custom)
 
-| ⭐️Stars   | 📦Repo    | 📚Description |
-| --------- | ----------- | -------------- |
-{{ loop 3_MOST_STARRED_REPOS }}
-| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
-{{ end 3_MOST_STARRED_REPOS }}
-
-## 3 most starred repos list
-
-{{ loop 3_MOST_STARRED_REPOS }}
+{{ loop C2_MOST_STARRED_REPOS }}
 ⭐️ {{ REPO_STARS }} [{{ REPO_FULL_NAME }}]({{ REPO_URL }}): {{ REPO_DESCRIPTION }}
 
-{{ end 3_MOST_STARRED_REPOS }}
+{{ end C2_MOST_STARRED_REPOS }}
 
 ## Me
 
@@ -70,10 +67,18 @@ module.exports = {
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}
 - **TOTAL_REPOSITORIES**: {{ TOTAL_REPOSITORIES }}
 
-## 3 newest repos
+## 3 newest repos list
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
 {{ loop 3_NEWEST_REPOS }}
 | {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end 3_NEWEST_REPOS }}
+
+## 3 recently pushed repos
+
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+{{ loop 3_RECENTLY_PUSHED_REPOS }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end 3_RECENTLY_PUSHED_REPOS }}

@@ -1,7 +1,7 @@
 # Example
 
 
-## Specific repos
+## Specific repos (custom)
 
 | ⭐️Stars   | 🗓Created | 📦Repo    | 📚Description |
 | --------- | -------- | ----------- | -------------- |
@@ -9,21 +9,11 @@
 | 75686 | 2014-08-19T04:33:40Z | [golang/go](https://github.com/golang/go) | The Go programming language |
 | 0 | 2020-08-16T02:48:43Z | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |
 
-## 3 most starred repos table
-
-| ⭐️Stars   | 📦Repo    | 📚Description |
-| --------- | ----------- | -------------- |
-| 10 | [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
-| 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | My Homebrew casks and formulas |
-| 2 | [probablykasper/cryp](https://github.com/probablykasper/cryp) | Cryptocurrency portfolio tracker |
-
-## 3 most starred repos list
+## 2 most starred repos list (custom)
 
 ⭐️ 10 [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax): A pretty Atom syntax theme based on Lonely Planet colours
 
 ⭐️ 4 [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap): My Homebrew casks and formulas
-
-⭐️ 2 [probablykasper/cryp](https://github.com/probablykasper/cryp): Cryptocurrency portfolio tracker
 
 
 ## Me
@@ -50,10 +40,18 @@
   - **TOTAL_REPOS_SIZE_GB**: 0.71
 - **TOTAL_REPOSITORIES**: 46
 
-## 3 newest repos
+## 3 newest repos list
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
 | 0 | [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action) | Fills in variables (with loop support) from a TEMPLATE.md into a README.md |
 | 0 | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |
 | 0 | [probablykasper/svelte-preprocess](https://github.com/probablykasper/svelte-preprocess) | A ✨ magical ✨ Svelte preprocessor with sensible defaults and support for: PostCSS, SCSS, Less, Stylus, Coffeescript, TypeScript, Pug and much more. |
+
+## 3 recently pushed repos
+
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+| 0 | [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action) | Fills in variables (with loop support) from a TEMPLATE.md into a README.md |
+| 0 | [probablykasper/cpc](https://github.com/probablykasper/cpc) | Text calculator with support for units and conversion |
+| 0 | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |

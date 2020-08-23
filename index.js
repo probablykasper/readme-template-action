@@ -105,6 +105,17 @@ async function run() {
         `
       }
     }
+    if (!customTemplate['3_RECENTLY_PUSHED_REPOS']) {
+      customTemplate['3_RECENTLY_PUSHED_REPOS'] = {
+        type: 'repos',
+        params: `
+          first: 3,
+          privacy: PUBLIC,
+          ownerAffiliations:[OWNER],
+          orderBy: { field:PUSHED_AT, direction: DESC }
+        `
+      }
+    }
 
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'repos' || template.type === 'specificRepos') {
@@ -113,7 +124,6 @@ async function run() {
         const repos = template.type === 'repos'
           ? await queries.getRepos(template.params)
           : await queries.getSpecificRepos(user.USERNAME, template.repos)
-
         if (typeof template.modifyVariables === 'function') {
           for (let i = 0; i < repos.length; i++) {
             repos[i] = template.modifyVariables(repos[i])

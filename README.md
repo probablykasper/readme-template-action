@@ -16,6 +16,8 @@ By default, it takes `TEMPLATE.md` and outputs `README.md`.
 
 ## Example usage
 
+Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_TEMPLATE.md) for more examples and their outputs.
+
 Workflow:
 
 ```yml
@@ -72,7 +74,7 @@ My most starred repos:
 
 ## Variables
 
-These are the variables you can put into your template file:
+### Normal variables you can put into your template file
 
 | Variable                  | Example |
 | ------------------------- | ------- |
@@ -98,7 +100,8 @@ These are the variables you can put into your template file:
 | {{ TOTAL_REPOS_SIZE_GB }} | 0.71 |
 | {{ TOTAL_REPOSITORIES }}  | 70740 |
 
-These are the variables you can put inside repo loops:
+### Variables you can put inside `repo` loops
+
 | Variable                  | Example |
 | ------------------------- | ------- |
 | {{ REPO_NAME }}           | cpc
@@ -145,6 +148,13 @@ These are the built-in loops you can use:
                 Fetches your 3 most starred repos.
                 Uses the following parameters:
                 <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:CREATED_AT, direction: DESC }</pre>
+            </td>
+            <td><code>3_RECENTLY_PUSHED_REPOS</code></td>
+            <td>repos</td>
+            <td>
+                Fetches your 3 most starred repos.
+                Uses the following parameters:
+                <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:PUSHED_AT, direction: DESC }</pre>
             </td>
         </tr>
         <tr>
