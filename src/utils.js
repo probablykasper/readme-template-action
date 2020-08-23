@@ -33,6 +33,5 @@ module.exports.deleteLastLine = function(str) {
   } else {
     lines.splice(-1, 1)
   }
-  console.log(lines)
   return lines.join('\n')
 }

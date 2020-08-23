@@ -53,7 +53,6 @@ function inject(str, values) {
 }
 
 async function injectLoop(str, name, valuesListArg) {
-  console.log({str, name, valuesListArg})
   const parsed = parseBlock(str, `{{ loop ${name} }}`, `{{ end ${name} }}`)
   if (!parsed) return str
   let valuesList = valuesListArg
@@ -62,8 +61,7 @@ async function injectLoop(str, name, valuesListArg) {
   for (const values of valuesList) {
     newBlock += inject(parsed.block, values)
   }
-  console.log(parsed)
-  return parsed.beforeBlock + newBlock + injectLoop(parsed.afterBlock, name, valuesList)
+  return parsed.beforeBlock + newBlock + await injectLoop(parsed.afterBlock, name, valuesList)
 }
 
 run()
@@ -80,30 +78,34 @@ async function run() {
 
     let { customTemplate, outputStr } = getCustomTemplate(templateFile)
 
-    console.log('Fetching user data')
+    console.log('User data: Fetching')
     const user = await queries.getUser()
-    console.log('Injecting user data')
+    console.log('User data: Injecting')
     outputStr = inject(outputStr, user)
 
-    console.log('Fetching 5_MOST_STARRED_REPOS')
-    const starredRepos = await queries.getRepos(`
-      first: 5,
-      privacy: PUBLIC,
-      ownerAffiliations:[OWNER],
-      orderBy: { field:STARGAZERS, direction: DESC }
-    `)
-    outputStr = injectLoop(outputStr, '5_MOST_STARRED_REPOS', starredRepos)
+    console.log('Searching for 5_MOST_STARRED_REPOS')
+    outputStr = await injectLoop(outputStr, '5_MOST_STARRED_REPOS', async () => {
+      console.log('5_MOST_STARRED_REPOS: Fetching')
+      const starredRepos = await queries.getRepos(`
+        first: 5,
+        privacy: PUBLIC,
+        ownerAffiliations:[OWNER],
+        orderBy: { field:STARGAZERS, direction: DESC }
+      `)
+      console.log('5_MOST_STARRED_REPOS: Injecting')
+      return starredRepos
+    })
 
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'specificRepos') {
-        console.log('Fetching', templateName)
+        console.log(templateName+': Fetching')
         const repos = await queries.getSpecificRepos(user.USERNAME, template.repos)
         for (let i = 0; i < repos.length; i++) {
           repos[i] = template.modifyVariables(repos[i])
         }
 
-        console.log('Injecting', templateName)
-        outputStr = injectLoop(outputStr, templateName, repos)
+        console.log(templateName+': Injecting')
+        outputStr = await injectLoop(outputStr, templateName, repos)
       }
     }
 
