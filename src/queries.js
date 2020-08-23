@@ -4,14 +4,8 @@ const github = require('@actions/github')
 const ghToken = core.getInput('GITHUB_TOKEN')
 const octokit = github.getOctokit(ghToken)
 
-const graphqlQuery = async function(...args) {
-  const queryResult = await octokit.graphql(...args)
-  if (queryResult.errors) throw queryResult.errors
-  return queryResult
-}
-
 module.exports.getUser = async function() {
-  const queryResult = await graphqlQuery(`
+  const queryResult = await octokit.graphql(`
     query {
       viewer {
         USERNAME: login
@@ -76,7 +70,7 @@ function fixRepoValues(repo) {
 
 module.exports.getRepos = async function(args) {
 
-  const queryResult = await graphqlQuery(`
+  const queryResult = await octokit.graphql(`
     query {
       viewer {
         repositories(${args}) {
@@ -159,7 +153,7 @@ module.exports.getSpecificRepos = async function(username, repoNames) {
       }
     `
   }
-  const queryResult = await graphqlQuery(`
+  const queryResult = await octokit.graphql(`
     query {
       ${repoQueryProperties}
     }

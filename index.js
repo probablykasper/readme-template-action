@@ -120,7 +120,6 @@ async function run() {
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'repos' || template.type === 'specificRepos') {
 
-
         console.log(templateName)
         console.log('    - Looking for')
         outputStr = await injectLoop(outputStr, templateName, async () => {

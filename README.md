@@ -123,7 +123,7 @@ My most starred repos:
 
 ## Loops
 
-These are the built-in loops you can use:
+These are the built-in loops you can use. Data is only fetched for loops you use.
 
 <table>
     <thead>

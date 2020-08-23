@@ -3,7 +3,7 @@
 ```js
 // {{ TEMPLATE: }}
 module.exports = {
-    C2_MOST_STARRED_REPOS: {
+    "2_MOST_STARRED_REPOS": {
         type: 'repos',
         params: `
             first: 2,
@@ -38,10 +38,10 @@ module.exports = {
 
 ## 2 most starred repos list (custom)
 
-{{ loop C2_MOST_STARRED_REPOS }}
+{{ loop 2_MOST_STARRED_REPOS }}
 ⭐️ {{ REPO_STARS }} [{{ REPO_FULL_NAME }}]({{ REPO_URL }}): {{ REPO_DESCRIPTION }}
 
-{{ end C2_MOST_STARRED_REPOS }}
+{{ end 2_MOST_STARRED_REPOS }}
 
 ## Me
 
