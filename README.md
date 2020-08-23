@@ -35,7 +35,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Generate README.md
-      uses: probablykasper/readme-template-action
+      uses: probablykasper/readme-template-action@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         template: TEMPLATE.md
@@ -268,10 +268,12 @@ First, to get started:
 1. Install [Node.js](https://nodejs.org/)
 2. Run `npm install`
 3. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate a GitHub personal access token with the `read:user` scope.
-4. Create a `.env` file contianing the token:
+4. Create a `.env` file like this, with your token:
 
 ```env
 INPUT_GITHUB_TOKEN=mytoken
+INPUT_TEMPLATE=EXAMPLE_TEMPLATE.md
+INPUT_OUTPUT=EXAMPLE_OUTPUT.md
 ```
 
 Now you can test the action by running the following command:

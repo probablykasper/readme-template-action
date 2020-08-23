@@ -1,12 +1,13 @@
 {
   "name": "readme-template",
-  "main": "index.js",
   "scripts": {
-    "test": "export $(cat .env | xargs) && INPUT_TEMPLATE=EXAMPLE_TEMPLATE.md INPUT_OUTPUT=EXAMPLE_OUTPUT.md node ."
+    "build": "ncc build src/main.js -o dist/bundle.js",
+    "test": "ncc build src/main.js -o dist/bundle.js && export $(cat .env | xargs) && node dist/bundle.js"
   },
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0",
+    "@vercel/ncc": "^0.23.0",
     "moment": "^2.27.0",
     "require-from-string": "^2.0.2"
   },

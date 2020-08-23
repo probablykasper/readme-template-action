@@ -1,13 +1,13 @@
 const core = require('@actions/core')
 const fs = require('fs')
 const moment = require('moment')
-const queries = require('./src/queries.js')
+const queries = require('./queries.js')
 const {
   newErr,
   trimRightChar, 
   deleteFirstLine,
   deleteLastLine,
-} = require('./src/utils.js')
+} = require('./utils.js')
 
 // parses first found only
 function parseBlock(str, openStr, closeStr) {
