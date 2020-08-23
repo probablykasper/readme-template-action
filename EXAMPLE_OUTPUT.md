@@ -3,7 +3,7 @@
 
 ## latest vidl release (custom)
 
-[vidl 3.5.0](https://github.com/probablykasper/vidl/releases/tag/3.5.0) (21 days ago)
+[vidl 3.5.0](https://github.com/probablykasper/vidl/releases/tag/3.5.0) (22 days ago)
 
 ## Specific repos (custom)
 
@@ -37,10 +37,10 @@
   - **SIGNUP_DATE2**: 2015-03-04
   - **SIGNUP_YEAR**: 2015
   - **SIGNUP_AGO**: 5 years ago
-- **TOTAL_REPOS_SIZE_KB**: 707453
+- **TOTAL_REPOS_SIZE_KB**: 707467
   - **TOTAL_REPOS_SIZE_MB**: 707.5
   - **TOTAL_REPOS_SIZE_GB**: 0.71
-- **TOTAL_REPOSITORIES**: 46
+- **TOTAL_REPOSITORIES**: 47
 
 ## 3 most starred repos
 
@@ -54,14 +54,14 @@
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
+| 0 | [probablykasper/readme-template-action-test](https://github.com/probablykasper/readme-template-action-test) | test repo for readme-template-action |
 | 0 | [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action) | Fills in variables (with loop support) from a TEMPLATE.md into a README.md |
 | 0 | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |
-| 0 | [probablykasper/svelte-preprocess](https://github.com/probablykasper/svelte-preprocess) | A ✨ magical ✨ Svelte preprocessor with sensible defaults and support for: PostCSS, SCSS, Less, Stylus, Coffeescript, TypeScript, Pug and much more. |
 
 ## 3 recently pushed repos
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
+| 0 | [probablykasper/readme-template-action-test](https://github.com/probablykasper/readme-template-action-test) | test repo for readme-template-action |
 | 0 | [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action) | Fills in variables (with loop support) from a TEMPLATE.md into a README.md |
 | 0 | [probablykasper/cpc](https://github.com/probablykasper/cpc) | Text calculator with support for units and conversion |
-| 0 | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |

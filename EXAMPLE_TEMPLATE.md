@@ -10,6 +10,10 @@ module.exports = {
       'golang/go',
       'probablykasper/embler',
     ],
+    modifyVariables: function(repo, moment, user) {
+      repo.REPO_CREATED_MYDATE = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY MMMM Do')
+      return repo
+    },
   },
   "2_MOST_STARRED_REPOS": {
     type: 'repos',
@@ -19,10 +23,6 @@ module.exports = {
       ownerAffiliations:[OWNER],
       orderBy: { field:STARGAZERS, direction: DESC },
     `,
-    modifyVariables: function(repo, moment, user) {
-      repo.REPO_CREATED_MYDATE = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY MMMM Do')
-      return repo
-    },
   },
   LATEST_VIDL_RELEASE: {
     type: 'customQuery',

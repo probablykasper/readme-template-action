@@ -21,32 +21,34 @@ Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md
 Workflow:
 
 ```yml
+name: Readme Template
 on:
-    schedule:
-        - cron: '0 */2 * * *' # every 2 hours
-    push:
-        branchesL
-            - master
+  schedule:
+    - cron: '0 */2 * * *' # every 2 hours
+  push:
+    branches: [ master ]
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Generate README.md
-        uses: probablykasper/readme-template
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Update README.md
-        run: |
-          if [[ "$(git status --porcelain)" != "" ]]; then
-            git config user.name "GitHub Action"
-            git config user.email "action@github.com"
-            git add .
-            git commit -m "Update README"
-            git push
-          fi
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Generate README.md
+      uses: probablykasper/readme-template-action
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        template: TEMPLATE.md
+        output: README.md
+    - name: Update README.md
+      run: |
+        if [[ "$(git status --porcelain)" != "" ]]; then
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git commit -m "Auto-update README.md"
+          git push
+        fi
 ```
 
 `TEMPLATE.md`:

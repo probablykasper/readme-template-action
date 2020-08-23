@@ -69,12 +69,12 @@ run()
 async function run() {
   try {
 
-    let templatePath = core.getInput('TEMPLATE')
+    let templatePath = core.getInput('TEMPLATE', { required: true })
     console.log('template:', templatePath)
     if (!fs.existsSync(templatePath)) throw newErr('Template file not found')
     const templateFile = fs.readFileSync(templatePath).toString()
 
-    let outputPath = core.getInput('OUTPUT')
+    let outputPath = core.getInput('OUTPUT', { required: true })
     console.log('output:', outputPath)
 
     let { customTemplate, outputStr } = getCustomTemplate(templateFile)
