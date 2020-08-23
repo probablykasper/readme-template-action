@@ -3,10 +3,9 @@ const github = require('@actions/github')
 const moment = require('moment')
 
 const ghToken = core.getInput('GITHUB_TOKEN', { required: true })
-// core.setSecret(ghToken)
+core.setSecret(ghToken)
 const octokit = github.getOctokit(ghToken)
 module.exports.octokit = octokit
-console.log(ghToken)
 
 module.exports.getUser = async function() {
   const queryResult = await octokit.graphql(`

@@ -5,7 +5,6 @@ inputs:
   github_token:
     description: Your github personal access token with `read:user` scope
     required: true
-    default: TEMPLATE.md
   template:
     description: The file to use as template
     required: true
