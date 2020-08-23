@@ -3,37 +3,72 @@
 ```js
 // {{ TEMPLATE: }}
 module.exports = {
-    "2_MOST_STARRED_REPOS": {
-        type: 'repos',
-        params: `
-            first: 2,
-            privacy: PUBLIC,
-            ownerAffiliations:[OWNER],
-            orderBy: { field:STARGAZERS, direction: DESC },
-        `,
+  CUSTOM_PINNED_REPOS: {
+    type: 'specificRepos',
+    repos: [
+      'vidl',
+      'golang/go',
+      'probablykasper/embler',
+    ],
+  },
+  "2_MOST_STARRED_REPOS": {
+    type: 'repos',
+    params: `
+      first: 2,
+      privacy: PUBLIC,
+      ownerAffiliations:[OWNER],
+      orderBy: { field:STARGAZERS, direction: DESC },
+    `,
+    modifyVariables: function(repo, moment, user) {
+      repo.REPO_CREATED_MYDATE = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY MMMM Do')
+      return repo
     },
-    CUSTOM_PINNED_REPOS: {
-        type: 'specificRepos',
-        repos: [
-            'vidl',
-            'golang/go',
-            'probablykasper/embler',
-        ],
-        modifyVariables: function(repo) {
-            repo.REPO_CREATED_YYYY = new Date(repo.REPO_CREATED_DATE).getFullYear()
-            return repo
-        },
-    },
+  },
+  LATEST_VIDL_RELEASE: {
+    type: 'customQuery',
+    loop: false,
+    query: async (octokit, moment, user) => {
+      // You can do anything  you want with the GitHub API here.
+      const result = await octokit.graphql(`
+        query {
+          repository(name: "vidl", owner: "${user.USERNAME}") {
+            releases(last: 1) {
+              edges {
+                node {
+                  url
+                  publishedAt
+                  tagName
+                }
+              }
+            }
+          }
+        }
+      `)
+      const release = result.repository.releases.edges[0].node
+      const date = new Date(release.publishedAt)
+      // We have `loop: false`, so we return an object.
+      // If we had `loop: true`, we would return an array of objects.
+      return {
+        VIDL_RELEASE_TAG: release.tagName,
+        VIDL_RELEASE_URL: release.url,
+        VIDL_RELEASE_WHEN: moment(release.publishedAt).fromNow(),
+      }
+    }
+  }
 }
 // {{ :TEMPLATE }}
 ```
+
+## latest vidl release (custom)
+
+[vidl {{ VIDL_RELEASE_TAG }}]({{ VIDL_RELEASE_URL }}) ({{ VIDL_RELEASE_WHEN }})
 
 ## Specific repos (custom)
 
 | ⭐️Stars   | 🗓Created | 📦Repo    | 📚Description |
 | --------- | -------- | ----------- | -------------- |
 {{ loop CUSTOM_PINNED_REPOS }}
-| {{ REPO_STARS }} | {{ REPO_CREATED_DATE }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+| {{ REPO_STARS }} | {{ REPO_CREATED_MYDATE }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end CUSTOM_PINNED_REPOS }}
 
 ## 2 most starred repos list (custom)
@@ -55,13 +90,11 @@ module.exports = {
 - **TWITTER_USERNAME**: {{ TWITTER_USERNAME }}
 - **AVATAR_URL**: {{ AVATAR_URL }}
 - **WEBSITE_URL**: {{ WEBSITE_URL }}
-- **SIGNUP_DATE**: {{ SIGNUP_DATE }}
-- **SIGNUP_YYYY**: {{ SIGNUP_YYYY }}
-  - **SIGNUP_M**: {{ SIGNUP_M }}
-  - **SIGNUP_MMM**: {{ SIGNUP_MMM }}
-  - **SIGNUP_MMMM**: {{ SIGNUP_MMMM }}
-  - **SIGNUP_D**: {{ SIGNUP_D }}
-  - **SIGNUP_DO**: {{ SIGNUP_DO }}
+- **SIGNUP_TIMESTAMP**: {{ SIGNUP_TIMESTAMP }}
+  - **SIGNUP_DATE**: {{ SIGNUP_DATE }}
+  - **SIGNUP_DATE2**: {{ SIGNUP_DATE2 }}
+  - **SIGNUP_YEAR**: {{ SIGNUP_YEAR }}
+  - **SIGNUP_AGO**: {{ SIGNUP_AGO }}
 - **TOTAL_REPOS_SIZE_KB**: {{ TOTAL_REPOS_SIZE_KB }}
   - **TOTAL_REPOS_SIZE_MB**: {{ TOTAL_REPOS_SIZE_MB }}
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}

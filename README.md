@@ -76,50 +76,55 @@ My most starred repos:
 
 ### Normal variables you can put into your template file
 
-| Variable                  | Example |
-| ------------------------- | ------- |
-| {{ USERNAME }}            | probablykasper |
-| {{ NAME }}                | Kasper |
-| {{ EMAIL }}               | email@example.com |
-| {{ USER_ID }}             | MDQ6VXNlcjExMzE1NDky |
-| {{ BIO }}                 | Fullstack developer from Norway |
-| {{ COMPANY }}             | Microscopicsoft |
-| {{ SIGNUP_DATE }}         | 2015-03-04T14:48:35Z |
-| {{ LOCATION }}            | Norway |
-| {{ TWITTER_USERNAME }}    | probablykasper |
-| {{ AVATAR_URL }}          | https://avatars0.githubusercontent.com/u/11315492u=c501da00e9b817ffc78faab6c630f236ac2738cf&v=4 |
-| {{ WEBSITE_URL }}         | https://kasper.space/ |
-| {{ SIGNUP_YYYY }}         | 2015 |
-| {{ SIGNUP_M }}            | 3 |
-| {{ SIGNUP_MMM }}          | Mar |
-| {{ SIGNUP_MMMM }}         | March |
-| {{ SIGNUP_D }}            | 4 |
-| {{ SIGNUP_DO }}           | 4th |
-| {{ TOTAL_REPOS_SIZE_KB }} | 707403 |
-| {{ TOTAL_REPOS_SIZE_MB }} | 707.4 |
-| {{ TOTAL_REPOS_SIZE_GB }} | 0.71 |
-| {{ TOTAL_REPOSITORIES }}  | 70740 |
+| Variable                 | Example |
+| ------------------------ | ------- |
+| {{ USERNAME}}            | probablykasper
+| {{ NAME}}                | Kasper
+| {{ EMAIL}}               | email@example.com
+| {{ USER_ID}}             | MDQ6VXNlcjExMzE1NDky
+| {{ BIO}}                 | Fullstack developer from Norway
+| {{ COMPANY}}             | Microscopicsoft
+| {{ LOCATION}}            | Norway
+| {{ TWITTER_USERNAME}}    | probablykasper
+| {{ AVATAR_URL}}          | https://avatars0.githubusercontent.com/u/11315492?u=c501da00e9b817ffc78faab6c630f236ac2738cf&v=4
+| {{ WEBSITE_URL}}         | https://kasper.space/
+| {{ SIGNUP_TIMESTAMP}}    | 2015-03-04T14:48:35Z
+| {{ SIGNUP_DATE}}         | March 4th 2015
+| {{ SIGNUP_DATE2}}        | 2015-03-04
+| {{ SIGNUP_YEAR}}         | 2015
+| {{ SIGNUP_AGO}}          | 5 years ago
+| {{ TOTAL_REPOS_SIZE_KB}} | 707453
+| {{ TOTAL_REPOS_SIZE_MB}} | 707.5
+| {{ TOTAL_REPOS_SIZE_GB}} | 0.71
+| {{ TOTAL_REPOSITORIES}}  | 46
 
 ### Variables you can put inside `repo` loops
 
-| Variable                  | Example |
-| ------------------------- | ------- |
-| {{ REPO_NAME }}           | cpc
-| {{ REPO_FULL_NAME }}      | probablykasper/cpc
-| {{ REPO_OWNER_USERNAME }} | probablykasper
-| {{ REPO_DESCRIPTION }}    | Text calculator with support for units and conversion |
-| {{ REPO_URL }}            | https://github.com/probablykasper/cpc
-| {{ REPO_HOMEPAGE_URL }}   | https://rust-lang.org/
-| {{ REPO_CREATED_DATE }}   | 2019-12-05T22:45:04Z
-| {{ REPO_PUSHED_DATE }}    | 2020-08-20T20:13:22Z
-| {{ REPO_UPDATED_DATE }}   | 2020-08-20T20:13:25Z
-| {{ REPO_FORK_COUNT }}     | 0
-| {{ REPO_ID }}             | MDEwOlJlcG9zaXRvcnkyMjYyMDE5NTU=
-| {{ REPO_STARS }}          | 0
-| {{ REPO_LANGUAGE }}       | Rust
-| {{ REPO_SIZE_KB }}        | 1268285
-| {{ REPO_SIZE_MB }}        | 1268.3
-| {{ REPO_SIZE_GB }}        | 1.27
+| Variable                     | Example |
+| ---------------------------- | ------- |
+| {{ REPO_NAME }}              | cpc
+| {{ REPO_FULL_NAME }}         | probablykasper/cpc
+| {{ REPO_DESCRIPTION }}       | Text calculator with support for units and conversion
+| {{ REPO_URL }}               | https://github.com/probablykasper/cpc
+| {{ REPO_HOMEPAGE_URL }}      | https://rust-lang.org/
+| {{ REPO_CREATED_TIMESTAMP }} | 2019-12-05T22:45:04Z
+| {{ REPO_PUSHED_TIMESTAMP }}  | 2020-08-20T20:13:22Z
+| {{ REPO_FORK_COUNT }}        | 2
+| {{ REPO_ID }}                | MDEwOlJlcG9zaXRvcnkyMjYyMDE5NTU=
+| {{ REPO_CREATED_DATE }}      | December 5th 2019
+| {{ REPO_CREATED_DATE2 }}     | 2019-12-05
+| {{ REPO_CREATED_YEAR }}      | 2019
+| {{ REPO_CREATED_AGO }}       | 9 months ago
+| {{ REPO_PUSHED_DATE }}       | August 20th 2020
+| {{ REPO_PUSHED_DATE2 }}      | 2020-08-20
+| {{ REPO_PUSHED_YEAR }}       | 2020
+| {{ REPO_PUSHED_AGO }}        | 3 days ago
+| {{ REPO_STARS }}             | 5
+| {{ REPO_LANGUAGE }}          | Rust
+| {{ REPO_OWNER_USERNAME }}    | probablykasper
+| {{ REPO_SIZE_KB }}           | 1268285
+| {{ REPO_SIZE_MB }}           | 1268.3
+| {{ REPO_SIZE_GB }}           | 1.27
 
 ## Loops
 
@@ -167,7 +172,90 @@ These are the built-in loops you can use. Data is only fetched for loops you use
 
 ## Advanced usage
 
-If you want to show less starred repos,
+Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_TEMPLATE.md) to see examples and their outputs.
+
+For advanced usage, add a code block like this to your template:
+
+````markdown
+```js
+// {{ TEMPLATE: }}
+module.exports = {
+    // ... custom vairables/loops
+}
+// {{ :TEMPLATE }}
+````
+
+To get a list of specific repos:
+
+```js
+  CUSTOM_PINNED_REPOS: {
+    type: 'specificRepos',
+    repos: [ 'vidl', 'golang/go', 'probablykasper/embler' ],
+  },
+```
+
+To get repos using custom parameters:
+
+```js
+  "2_MOST_STARRED_REPOS": {
+    type: 'repos',
+    params: `
+      first: 2,
+      privacy: PUBLIC,
+      ownerAffiliations:[OWNER],
+      orderBy: { field:STARGAZERS, direction: DESC },
+    `,
+  },
+```
+
+Add a `modifyVariables` function to overwrite/add variables:
+
+```js
+  CUSTOM_PINNED_REPOS: {
+    type: 'specificRepos',
+    repos: [ 'vidl' ],
+    modifyVariables: function(repo, moment, user) {
+      repo.REPO_CREATED_MYDATE = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY MMMM Do')
+      return repo
+    },
+  },
+```
+
+Add a custom query:
+
+```js
+  LATEST_VIDL_RELEASE: {
+    type: 'customQuery',
+    loop: false,
+    query: async (octokit, moment, user) => {
+      // You can do anything  you want with the GitHub API here.
+      const result = await octokit.graphql(`
+        query {
+          repository(name: "vidl", owner: "${user.USERNAME}") {
+            releases(last: 1) {
+              edges {
+                node {
+                  url
+                  publishedAt
+                  tagName
+                }
+              }
+            }
+          }
+        }
+      `)
+      const release = result.repository.releases.edges[0].node
+      const date = new Date(release.publishedAt)
+      // We have `loop: false`, so we return an object.
+      // If we had `loop: true`, we would return an array of objects.
+      return {
+        VIDL_RELEASE_TAG: release.tagName,
+        VIDL_RELEASE_URL: release.url,
+        VIDL_RELEASE_WHEN: moment(release.publishedAt).fromNow(),
+      }
+    }
+  }
+```
 
 ## Dev instructions
 

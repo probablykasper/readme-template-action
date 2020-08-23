@@ -4,6 +4,7 @@ const moment = require('moment')
 
 const ghToken = core.getInput('GITHUB_TOKEN')
 const octokit = github.getOctokit(ghToken)
+module.exports.octokit = octokit
 
 module.exports.getUser = async function() {
   const queryResult = await octokit.graphql(`
@@ -15,7 +16,7 @@ module.exports.getUser = async function() {
         USER_ID: id
         BIO: bio
         COMPANY: company
-        createdAt
+        SIGNUP_TIMESTAMP: createdAt
         LOCATION: location
         TWITTER_USERNAME: twitterUsername
         AVATAR_URL: avatarUrl
@@ -31,11 +32,10 @@ module.exports.getUser = async function() {
   const user = queryResult.viewer
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  user.SIGNUP_DATE = moment(user.createdAt).format('MMMM Do YYYY')
-  user.SIGNUP_DATE2 = moment(user.createdAt).format('YYYY-MM-DD')
-  user.SIGNUP_YEAR = moment(user.createdAt).format('YYYY')
-  user.SIGNUP_AGO = moment(user.createdAt).format('YYYY').fromNow()
-  delete user.createdAt
+  user.SIGNUP_DATE = moment(user.SIGNUP_TIMESTAMP).format('MMMM Do YYYY')
+  user.SIGNUP_DATE2 = moment(user.SIGNUP_TIMESTAMP).format('YYYY-MM-DD')
+  user.SIGNUP_YEAR = moment(user.SIGNUP_TIMESTAMP).format('YYYY')
+  user.SIGNUP_AGO = moment(user.SIGNUP_TIMESTAMP).fromNow()
   user.TOTAL_REPOS_SIZE_KB = user.repositories.totalDiskUsage
   user.TOTAL_REPOS_SIZE_MB = Math.round(user.repositories.totalDiskUsage/1000*10)/10
   user.TOTAL_REPOS_SIZE_GB = Math.round(user.repositories.totalDiskUsage/1000/1000*100)/100
@@ -47,17 +47,15 @@ module.exports.getUser = async function() {
 
 function fixRepoValues(repo) {
 
-  repo.REPO_CREATED_DATE = moment(repo.createdAt).format('MMMM Do YYYY')
-  repo.REPO_CREATED_DATE2 = moment(repo.createdAt).format('YYYY-MM-DD')
-  repo.REPO_CREATED_YEAR = moment(repo.createdAt).format('YYYY')
-  repo.REPO_CREATED_AGO = moment(repo.createdAt).format('YYYY').fromNow()
-  delete repo.createdAt
+  repo.REPO_CREATED_DATE = moment(repo.REPO_CREATED_TIMESTAMP).format('MMMM Do YYYY')
+  repo.REPO_CREATED_DATE2 = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY-MM-DD')
+  repo.REPO_CREATED_YEAR = moment(repo.REPO_CREATED_TIMESTAMP).format('YYYY')
+  repo.REPO_CREATED_AGO = moment(repo.REPO_CREATED_TIMESTAMP).fromNow()
 
-  repo.REPO_PUSHED_DATE = moment(repo.pushedAt).format('MMMM Do YYYY')
-  repo.REPO_PUSHED_DATE2 = moment(repo.pushedAt).format('YYYY-MM-DD')
-  repo.REPO_PUSHED_YEAR = moment(repo.pushedAt).format('YYYY')
-  repo.REPO_PUSHED_AGO = moment(repo.pushedAt).format('YYYY').fromNow()
-  delete repo.pushedAt
+  repo.REPO_PUSHED_DATE = moment(repo.REPO_PUSHED_TIMESTAMP).format('MMMM Do YYYY')
+  repo.REPO_PUSHED_DATE2 = moment(repo.REPO_PUSHED_TIMESTAMP).format('YYYY-MM-DD')
+  repo.REPO_PUSHED_YEAR = moment(repo.REPO_PUSHED_TIMESTAMP).format('YYYY')
+  repo.REPO_PUSHED_AGO = moment(repo.REPO_PUSHED_TIMESTAMP).fromNow()
 
   repo.REPO_STARS = repo.stargazers.totalCount
   delete repo.stargazers
@@ -96,8 +94,8 @@ module.exports.getRepos = async function(args) {
               REPO_DESCRIPTION: description
               REPO_URL: url
               REPO_HOMEPAGE_URL: homepageUrl
-              REPO_CREATED_DATE: createdAt
-              REPO_PUSHED_DATE: pushedAt
+              REPO_CREATED_TIMESTAMP: createdAt
+              REPO_PUSHED_TIMESTAMP: pushedAt
               diskUsage
               REPO_FORK_COUNT: forkCount
               REPO_ID: id
@@ -149,8 +147,8 @@ module.exports.getSpecificRepos = async function(username, repoNames) {
         REPO_DESCRIPTION: description
         REPO_URL: url
         REPO_HOMEPAGE_URL: homepageUrl
-        REPO_CREATED_DATE: createdAt
-        REPO_PUSHED_DATE: pushedAt
+        REPO_CREATED_TIMESTAMP: createdAt
+        REPO_PUSHED_TIMESTAMP: pushedAt
         REPO_FORK_COUNT: forkCount
         REPO_ID: id
         diskUsage

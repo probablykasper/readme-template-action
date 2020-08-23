@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const fs = require('fs')
+const moment = require('moment')
 const queries = require('./src/queries.js')
 const {
   newErr,
@@ -130,13 +131,31 @@ async function run() {
             : await queries.getSpecificRepos(user.USERNAME, template.repos)
           if (typeof template.modifyVariables === 'function') {
             for (let i = 0; i < repos.length; i++) {
-              repos[i] = template.modifyVariables(repos[i])
+              repos[i] = template.modifyVariables(repos[i], moment, user)
             }
           }
           console.log('    - Injecting')
           return repos
         })
 
+      } else if (template.type === 'customQuery') {
+
+        console.log(templateName, '(customQuery)')
+        if (template.loop) {
+          console.log('    - Looking for')
+          outputStr = await injectLoop(outputStr, templateName, async () => {
+            console.log('    - Fetching')
+            const resultArray = await template.query(queries.octokit, moment, user)
+            console.log('    - Injecting')
+            return resultArray
+          })
+        } else {
+          console.log('    - Fetching')
+          const resultObject = await template.query(queries.octokit, moment, user)
+          console.log('    - Injecting')
+          outputStr = inject(outputStr, resultObject)
+        }
+        
       } else {
         throw new Error(`Invalid template type "${template.type}"`)
       }
