@@ -47,32 +47,33 @@ jobs:
           fi
 ```
 
-TEMPLATE.md:
+`TEMPLATE.md`:
 
 ````markdown
 My most starred repos:
-| Stars | Name | Description |
-| ----- | ---- | ----------- |
-{{ loop 5_MOST_STARRED_REPOS }}
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+{{ loop 3_MOST_STARRED_REPOS }}
 | {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
-{{ end 5_MOST_STARRED_REPOS }}
+{{ end 3_MOST_STARRED_REPOS }}
 ````
 
-This generates the following README.md in my case:
+This generates the following output in my case:
 
 My most starred repos:
 
-|Stars|Name|Description|
-|---|---|---|
-| 101 | [csutter/chester-atom-syntax](https://github.com/csutter/chester-atom-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
 | 10 | [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
-| 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | null |
+| 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | My Homebrew casks and formulas |
 | 2 | [probablykasper/cryp](https://github.com/probablykasper/cryp) | Cryptocurrency portfolio tracker |
 | 1 | [probablykasper/notifier](https://github.com/probablykasper/notifier) | Flutter app for scheduling notifications |
+| 1 | [probablykasper/colorboy](https://github.com/probablykasper/colorboy) | Easy terminal coloring for Node.js, macOS/Linux |
 
 ## Variables
 
 These are the variables you can put into your template file:
+
 | Variable                  | Example |
 | ------------------------- | ------- |
 | {{ USERNAME }}            | probablykasper |
@@ -97,12 +98,7 @@ These are the variables you can put into your template file:
 | {{ TOTAL_REPOS_SIZE_GB }} | 0.71 |
 | {{ TOTAL_REPOSITORIES }}  | 70740 |
 
-## Loops
-
-The syntax for loops looks like this:
-
-TBA
-
+These are the variables you can put inside repo loops:
 | Variable                  | Example |
 | ------------------------- | ------- |
 | {{ REPO_NAME }}           | cpc
@@ -110,7 +106,7 @@ TBA
 | {{ REPO_OWNER_USERNAME }} | probablykasper
 | {{ REPO_DESCRIPTION }}    | Text calculator with support for units and conversion |
 | {{ REPO_URL }}            | https://github.com/probablykasper/cpc
-| {{ REPO_HOMEPAGE_URL }}   | https://github.com/probablykasper/cpc#cpc
+| {{ REPO_HOMEPAGE_URL }}   | https://rust-lang.org/
 | {{ REPO_CREATED_DATE }}   | 2019-12-05T22:45:04Z
 | {{ REPO_PUSHED_DATE }}    | 2020-08-20T20:13:22Z
 | {{ REPO_UPDATED_DATE }}   | 2020-08-20T20:13:25Z
@@ -121,6 +117,40 @@ TBA
 | {{ REPO_SIZE_KB }}        | 1268285
 | {{ REPO_SIZE_MB }}        | 1268.3
 | {{ REPO_SIZE_GB }}        | 1.27
+
+## Loops
+
+These are the built-in loops you can use:
+
+<table>
+    <thead>
+        <tr>
+            <td>Loop</td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>3_MOST_STARRED_REPOS</code></td>
+            <td>repos</td>
+            <td>
+                Fetches your 5 most starred repos.
+                Uses the following parameters:
+                <pre>first: 5,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:STARGAZERS, direction: DESC }</pre>
+            </td>
+        </tr>
+        <tr>
+            <td><code>Loop</code></td>
+            <td>Type</td>
+            <td>Description</td>
+        </tr>
+    </tbody>
+</table>
+
+## Advanced usage
+
+If you want to show less starred repos,
 
 ## Dev instructions
 
