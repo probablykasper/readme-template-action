@@ -13,16 +13,18 @@
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
-{{ loop 3_MOST_STARRED_REPOS }}
-| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
-{{ end 3_MOST_STARRED_REPOS }}
+| 10 | [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax) | A pretty Atom syntax theme based on Lonely Planet colours |
+| 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | My Homebrew casks and formulas |
+| 2 | [probablykasper/cryp](https://github.com/probablykasper/cryp) | Cryptocurrency portfolio tracker |
 
 ## 5 most starred repos list
 
-{{ loop 3_MOST_STARRED_REPOS }}
-⭐️ {{ REPO_STARS }} [{{ REPO_FULL_NAME }}]({{ REPO_URL }}): {{ REPO_DESCRIPTION }}
+⭐️ 10 [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax): A pretty Atom syntax theme based on Lonely Planet colours
 
-{{ end 3_MOST_STARRED_REPOS }}
+⭐️ 4 [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap): My Homebrew casks and formulas
+
+⭐️ 2 [probablykasper/cryp](https://github.com/probablykasper/cryp): Cryptocurrency portfolio tracker
+
 
 ## Me
 
@@ -43,7 +45,7 @@
   - **SIGNUP_MMMM**: March
   - **SIGNUP_D**: 4
   - **SIGNUP_DO**: 4th
-- **TOTAL_REPOS_SIZE_KB**: 723942
-  - **TOTAL_REPOS_SIZE_MB**: 723.9
+- **TOTAL_REPOS_SIZE_KB**: 723951
+  - **TOTAL_REPOS_SIZE_MB**: 724
   - **TOTAL_REPOS_SIZE_GB**: 0.72
-- **TOTAL_REPOSITORIES**: 723942
+- **TOTAL_REPOSITORIES**: 723951

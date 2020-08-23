@@ -10,9 +10,9 @@ module.exports = {
     CUSTOM_PINNED_REPOS: {
         type: 'specificRepos',
         repos: [
-        'vidl',
-        'golang/go',
-        'probablykasper/embler',
+            'vidl',
+            'golang/go',
+            'probablykasper/embler',
         ],
         modifyVariables: function(repo) {
             repo.REPO_CREATED_YYYY = new Date(repo.REPO_CREATED_DATE).getFullYear()
