@@ -120,18 +120,22 @@ async function run() {
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'repos' || template.type === 'specificRepos') {
 
-        console.log(templateName+': Fetching')
-        const repos = template.type === 'repos'
-          ? await queries.getRepos(template.params)
-          : await queries.getSpecificRepos(user.USERNAME, template.repos)
-        if (typeof template.modifyVariables === 'function') {
-          for (let i = 0; i < repos.length; i++) {
-            repos[i] = template.modifyVariables(repos[i])
-          }
-        }
 
-        console.log(templateName+': Injecting')
-        outputStr = await injectLoop(outputStr, templateName, repos)
+        console.log(templateName)
+        console.log('    - Looking for')
+        outputStr = await injectLoop(outputStr, templateName, async () => {
+          console.log('    - Fetching')
+          const repos = template.type === 'repos'
+            ? await queries.getRepos(template.params)
+            : await queries.getSpecificRepos(user.USERNAME, template.repos)
+          if (typeof template.modifyVariables === 'function') {
+            for (let i = 0; i < repos.length; i++) {
+              repos[i] = template.modifyVariables(repos[i])
+            }
+          }
+          console.log('    - Injecting')
+          return repos
+        })
 
       } else {
         throw new Error(`Invalid template type "${template.type}"`)

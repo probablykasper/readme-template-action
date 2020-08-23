@@ -67,6 +67,14 @@ module.exports = {
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}
 - **TOTAL_REPOSITORIES**: {{ TOTAL_REPOSITORIES }}
 
+## 3 most starred repos
+
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+{{ loop 3_MOST_STARRED_REPOS }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end 3_MOST_STARRED_REPOS }}
+
 ## 3 newest repos list
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
