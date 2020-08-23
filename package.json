@@ -1,8 +1,8 @@
 {
   "name": "readme-template",
   "scripts": {
-    "build": "ncc build src/main.js -o dist/bundle.js",
-    "test": "ncc build src/main.js -o dist/bundle.js && export $(cat .env | xargs) && node dist/bundle.js"
+    "build": "ncc build src/main.js -o dist",
+    "test": "ncc build src/main.js -o dist && export $(cat .env | xargs) && node dist/bundle.js"
   },
   "dependencies": {
     "@actions/core": "^1.2.4",

@@ -16,7 +16,7 @@ inputs:
     default: README.md
 runs:
   using: node12
-  main: dist/bundle.js
+  main: dist/index.js
 branding:
   icon: book-open
   color: gray-dark
