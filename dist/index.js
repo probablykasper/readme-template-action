@@ -4773,10 +4773,9 @@ const github = __webpack_require__(438)
 const moment = __webpack_require__(623)
 
 const ghToken = core.getInput('GITHUB_TOKEN', { required: true })
-// core.setSecret(ghToken)
+core.setSecret(ghToken)
 const octokit = github.getOctokit(ghToken)
 module.exports.octokit = octokit
-console.log(ghToken)
 
 module.exports.getUser = async function() {
   const queryResult = await octokit.graphql(`
