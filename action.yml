@@ -1,19 +1,23 @@
-name: 'README Template'
-author: 'Kasper Henningsen'
-description: 'Insert variables into markdown file using a template file'
+name: README Template
+author: Kasper Henningsen
+description: Insert variables into markdown file using a template file
 inputs:
   github_token:
-    description: 'Your github personal access token with `read:user` scope'
+    description: Your github personal access token with `read:user` scope
     required: true
-    default: 'TEMPLATE.md'
+    default: TEMPLATE.md
   template:
-    description: 'The file to use as template'
+    description: The file to use as template
     required: true
-    default: 'TEMPLATE.md'
+    default: TEMPLATE.md
   output:
-    description: 'The output file'
+    description: The output file
     required: true
-    default: 'README.md'
+    default: README.md
 runs:
-  using: 'node12'
-  main: 'dist/bundle.js'
+  using: node12
+  main: dist/bundle.js
+branding:
+  icon: book-open
+  color: gray-dark
+
