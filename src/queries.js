@@ -50,7 +50,7 @@ module.exports.getUser = async function() {
   user.TOTAL_REPOS_SIZE_KB = user.repositories.totalDiskUsage
   user.TOTAL_REPOS_SIZE_MB = Math.round(user.repositories.totalDiskUsage/1000*10)/10
   user.TOTAL_REPOS_SIZE_GB = Math.round(user.repositories.totalDiskUsage/1000/1000*100)/100
-  user.TOTAL_REPOSITORIES = user.repositories.totalDiskUsage
+  user.TOTAL_REPOSITORIES = user.repositories.totalCount
   delete user.repositories
 
   return user
