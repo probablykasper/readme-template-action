@@ -2,7 +2,7 @@ name: README Template
 author: Kasper Henningsen
 description: Insert variables into markdown file using a template file
 inputs:
-  github_token:
+  token:
     description: Your github personal access token with `read:user` scope
     required: true
   template:

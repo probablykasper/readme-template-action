@@ -84,9 +84,6 @@ async function run() {
     const user = await queries.getUser()
     console.log('    - Injecting')
     outputStr = inject(outputStr, user)
-    if (user.USERNAME === 'github-actions[bot]') {
-      console.log('Warning: The username is "github-actions[bot]". You may have forgotten to add your github token secret')
-    }
 
     if (!customTemplate['3_MOST_STARRED_REPOS']) {
       customTemplate['3_MOST_STARRED_REPOS'] = {

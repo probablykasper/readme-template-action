@@ -2,7 +2,7 @@ const core = require('@actions/core')
 const github = require('@actions/github')
 const moment = require('moment')
 
-const ghToken = core.getInput('GITHUB_TOKEN', { required: true })
+const ghToken = core.getInput('TOKEN', { required: true })
 core.setSecret(ghToken)
 const octokit = github.getOctokit(ghToken)
 module.exports.octokit = octokit

@@ -10,7 +10,7 @@ By default, it takes `TEMPLATE.md` and outputs `README.md`.
 
 | name         | type   | default         | description |
 | ------------ | ------ | --------------- | ----------- |
-| github_token | string |                 | GitHub personal access token used to fetch data. Can be passed using `${{ secrets.GITHUB_TOKEN }}`. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate one with the `read:user` scope
+| token        | string |                 | GitHub personal access token used to fetch data. Pass a secret by for instance using `${{ secrets.README_TEMPLATE_TOKEN }}`. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate one with the `read:user` scope
 | template     | string | `"TEMPLATE.md"` | Template file path
 | readme       | string | `"README.md"`   | Output file path
 
@@ -37,7 +37,7 @@ jobs:
     - name: Generate README.md
       uses: probablykasper/readme-template-action@v1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.README_TEMPLATE_TOKEN }}
         template: TEMPLATE.md
         output: README.md
     - name: Update README.md
@@ -271,7 +271,7 @@ First, to get started:
 4. Create a `.env` file like this, with your token:
 
 ```env
-INPUT_GITHUB_TOKEN=mytoken
+INPUT_TOKEN=mytoken
 INPUT_TEMPLATE=EXAMPLE_TEMPLATE.md
 INPUT_OUTPUT=EXAMPLE_OUTPUT.md
 ```
