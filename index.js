@@ -78,9 +78,10 @@ async function run() {
 
     let { customTemplate, outputStr } = getCustomTemplate(templateFile)
 
-    console.log('User data: Fetching')
+    console.log('User data')
+    console.log('    - Fetching')
     const user = await queries.getUser()
-    console.log('User data: Injecting')
+    console.log('    - Injecting')
     outputStr = inject(outputStr, user)
 
     if (!customTemplate['3_MOST_STARRED_REPOS']) {

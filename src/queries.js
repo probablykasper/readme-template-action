@@ -53,18 +53,22 @@ module.exports.getUser = async function() {
 function fixRepoValues(repo) {
   repo.REPO_STARS = repo.stargazers.totalCount
   delete repo.stargazers
+
   if (repo.primaryLanguage) {
     repo.REPO_LANGUAGE = repo.primaryLanguage.name
   } else {
     repo.REPO_LANGUAGE = 'None'
   }
   delete repo.primaryLanguage
+
   repo.REPO_OWNER_USERNAME = repo.owner.login
   delete repo.owner
+
   repo.REPO_SIZE_KB = repo.diskUsage
   repo.REPO_SIZE_MB = Math.round(repo.diskUsage/1000*10)/10
   repo.REPO_SIZE_GB = Math.round(repo.diskUsage/1000/1000*100)/100
   delete repo.diskUsage
+
   return repo
 }
 
@@ -86,7 +90,6 @@ module.exports.getRepos = async function(args) {
               REPO_HOMEPAGE_URL: homepageUrl
               REPO_CREATED_DATE: createdAt
               REPO_PUSHED_DATE: pushedAt
-              REPO_UPDATED_DATE: updatedAt
               diskUsage
               REPO_FORK_COUNT: forkCount
               REPO_ID: id
@@ -140,7 +143,6 @@ module.exports.getSpecificRepos = async function(username, repoNames) {
         REPO_HOMEPAGE_URL: homepageUrl
         REPO_CREATED_DATE: createdAt
         REPO_PUSHED_DATE: pushedAt
-        REPO_UPDATED_DATE: updatedAt
         REPO_FORK_COUNT: forkCount
         REPO_ID: id
         diskUsage
