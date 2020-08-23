@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
+const moment = require('moment')
 
 const ghToken = core.getInput('GITHUB_TOKEN')
 const octokit = github.getOctokit(ghToken)
@@ -14,7 +15,7 @@ module.exports.getUser = async function() {
         USER_ID: id
         BIO: bio
         COMPANY: company
-        SIGNUP_DATE: createdAt
+        createdAt
         LOCATION: location
         TWITTER_USERNAME: twitterUsername
         AVATAR_URL: avatarUrl
@@ -30,17 +31,11 @@ module.exports.getUser = async function() {
   const user = queryResult.viewer
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  const userCreatedAt = new Date(user.SIGNUP_DATE)
-  user.SIGNUP_YYYY = userCreatedAt.getFullYear()
-  user.SIGNUP_M = userCreatedAt.getMonth() + 1
-  user.SIGNUP_MMM = months[userCreatedAt.getMonth()].substring(0, 3)
-  user.SIGNUP_MMMM = months[userCreatedAt.getMonth()]
-  user.SIGNUP_D = userCreatedAt.getDate()
-  user.SIGNUP_DO = userCreatedAt.getDate()
-  if (user.SIGNUP_DO === 1) user.SIGNUP_DO += 'st'
-  if (user.SIGNUP_DO === 2) user.SIGNUP_DO += 'nd'
-  if (user.SIGNUP_DO === 3) user.SIGNUP_DO += 'rd'
-  if (user.SIGNUP_DO === 4) user.SIGNUP_DO += 'th'
+  user.SIGNUP_DATE = moment(user.createdAt).format('MMMM Do YYYY')
+  user.SIGNUP_DATE2 = moment(user.createdAt).format('YYYY-MM-DD')
+  user.SIGNUP_YEAR = moment(user.createdAt).format('YYYY')
+  user.SIGNUP_AGO = moment(user.createdAt).format('YYYY').fromNow()
+  delete user.createdAt
   user.TOTAL_REPOS_SIZE_KB = user.repositories.totalDiskUsage
   user.TOTAL_REPOS_SIZE_MB = Math.round(user.repositories.totalDiskUsage/1000*10)/10
   user.TOTAL_REPOS_SIZE_GB = Math.round(user.repositories.totalDiskUsage/1000/1000*100)/100
@@ -51,6 +46,19 @@ module.exports.getUser = async function() {
 }
 
 function fixRepoValues(repo) {
+
+  repo.REPO_CREATED_DATE = moment(repo.createdAt).format('MMMM Do YYYY')
+  repo.REPO_CREATED_DATE2 = moment(repo.createdAt).format('YYYY-MM-DD')
+  repo.REPO_CREATED_YEAR = moment(repo.createdAt).format('YYYY')
+  repo.REPO_CREATED_AGO = moment(repo.createdAt).format('YYYY').fromNow()
+  delete repo.createdAt
+
+  repo.REPO_PUSHED_DATE = moment(repo.pushedAt).format('MMMM Do YYYY')
+  repo.REPO_PUSHED_DATE2 = moment(repo.pushedAt).format('YYYY-MM-DD')
+  repo.REPO_PUSHED_YEAR = moment(repo.pushedAt).format('YYYY')
+  repo.REPO_PUSHED_AGO = moment(repo.pushedAt).format('YYYY').fromNow()
+  delete repo.pushedAt
+
   repo.REPO_STARS = repo.stargazers.totalCount
   delete repo.stargazers
 
