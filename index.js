@@ -83,16 +83,16 @@ async function run() {
     console.log('User data: Injecting')
     outputStr = inject(outputStr, user)
 
-    console.log('Searching for 5_MOST_STARRED_REPOS')
-    outputStr = await injectLoop(outputStr, '5_MOST_STARRED_REPOS', async () => {
-      console.log('5_MOST_STARRED_REPOS: Fetching')
+    console.log('Searching for 3_MOST_STARRED_REPOS')
+    outputStr = await injectLoop(outputStr, '3_MOST_STARRED_REPOS', async () => {
+      console.log('3_MOST_STARRED_REPOS: Fetching')
       const starredRepos = await queries.getRepos(`
-        first: 5,
+        first: 3,
         privacy: PUBLIC,
         ownerAffiliations:[OWNER],
         orderBy: { field:STARGAZERS, direction: DESC }
       `)
-      console.log('5_MOST_STARRED_REPOS: Injecting')
+      console.log('3_MOST_STARRED_REPOS: Injecting')
       return starredRepos
     })
 
