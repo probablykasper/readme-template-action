@@ -4802,7 +4802,6 @@ module.exports.getUser = async function() {
 
   const user = queryResult.viewer
 
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   user.SIGNUP_DATE = moment(user.SIGNUP_TIMESTAMP).format('MMMM Do YYYY')
   user.SIGNUP_DATE2 = moment(user.SIGNUP_TIMESTAMP).format('YYYY-MM-DD')
   user.SIGNUP_YEAR = moment(user.SIGNUP_TIMESTAMP).format('YYYY')
@@ -10995,6 +10994,9 @@ async function run() {
     const user = await queries.getUser()
     console.log('    - Injecting')
     outputStr = inject(outputStr, user)
+    if (user.USERNAME === 'github-actions[bot]') {
+      console.log('Warning: The username is "github-actions[bot]". You may have forgotten to add your github token secret')
+    }
 
     if (!customTemplate['3_MOST_STARRED_REPOS']) {
       customTemplate['3_MOST_STARRED_REPOS'] = {
