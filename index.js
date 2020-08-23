@@ -83,18 +83,6 @@ async function run() {
     console.log('User data: Injecting')
     outputStr = inject(outputStr, user)
 
-    // console.log('Searching for 3_MOST_STARRED_REPOS')
-    // outputStr = await injectLoop(outputStr, '3_MOST_STARRED_REPOS', async () => {
-    //   console.log('3_MOST_STARRED_REPOS: Fetching')
-    //   const starredRepos = await queries.getRepos(`
-    //     first: 3,
-    //     privacy: PUBLIC,
-    //     ownerAffiliations:[OWNER],
-    //     orderBy: { field:STARGAZERS, direction: DESC }
-    //   `)
-    //   console.log('3_MOST_STARRED_REPOS: Injecting')
-    //   return starredRepos
-    // })
     if (!customTemplate['3_MOST_STARRED_REPOS']) {
       customTemplate['3_MOST_STARRED_REPOS'] = {
         type: 'repos',
@@ -106,6 +94,17 @@ async function run() {
         `
       }
     }
+    if (!customTemplate['3_NEWEST_REPOS']) {
+      customTemplate['3_NEWEST_REPOS'] = {
+        type: 'repos',
+        params: `
+          first: 3,
+          privacy: PUBLIC,
+          ownerAffiliations:[OWNER],
+          orderBy: { field:CREATED_AT, direction: DESC }
+        `
+      }
+    }
 
     for (const [templateName, template] of Object.entries(customTemplate)) {
       if (template.type === 'repos' || template.type === 'specificRepos') {
@@ -114,11 +113,13 @@ async function run() {
         const repos = template.type === 'repos'
           ? await queries.getRepos(template.params)
           : await queries.getSpecificRepos(user.USERNAME, template.repos)
+
         if (typeof template.modifyVariables === 'function') {
           for (let i = 0; i < repos.length; i++) {
             repos[i] = template.modifyVariables(repos[i])
           }
         }
+
         console.log(templateName+': Injecting')
         outputStr = await injectLoop(outputStr, templateName, repos)
 

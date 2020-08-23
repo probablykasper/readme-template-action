@@ -9,7 +9,7 @@
 | 75686 | 2014-08-19T04:33:40Z | [golang/go](https://github.com/golang/go) | The Go programming language |
 | 0 | 2020-08-16T02:48:43Z | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |
 
-## 5 most starred repos table
+## 3 most starred repos table
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
@@ -17,7 +17,7 @@
 | 4 | [probablykasper/homebrew-tap](https://github.com/probablykasper/homebrew-tap) | My Homebrew casks and formulas |
 | 2 | [probablykasper/cryp](https://github.com/probablykasper/cryp) | Cryptocurrency portfolio tracker |
 
-## 5 most starred repos list
+## 3 most starred repos list
 
 ⭐️ 10 [probablykasper/chester-syntax](https://github.com/probablykasper/chester-syntax): A pretty Atom syntax theme based on Lonely Planet colours
 
@@ -45,7 +45,15 @@
   - **SIGNUP_MMMM**: March
   - **SIGNUP_D**: 4
   - **SIGNUP_DO**: 4th
-- **TOTAL_REPOS_SIZE_KB**: 723951
-  - **TOTAL_REPOS_SIZE_MB**: 724
-  - **TOTAL_REPOS_SIZE_GB**: 0.72
-- **TOTAL_REPOSITORIES**: 47
+- **TOTAL_REPOS_SIZE_KB**: 707434
+  - **TOTAL_REPOS_SIZE_MB**: 707.4
+  - **TOTAL_REPOS_SIZE_GB**: 0.71
+- **TOTAL_REPOSITORIES**: 46
+
+## 3 newest repos
+
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+| 0 | [probablykasper/readme-template-action](https://github.com/probablykasper/readme-template-action) | Fills in variables (with loop support) from a TEMPLATE.md into a README.md |
+| 0 | [probablykasper/embler](https://github.com/probablykasper/embler) | Turn binaries into applications |
+| 0 | [probablykasper/svelte-preprocess](https://github.com/probablykasper/svelte-preprocess) | A ✨ magical ✨ Svelte preprocessor with sensible defaults and support for: PostCSS, SCSS, Less, Stylus, Coffeescript, TypeScript, Pug and much more. |

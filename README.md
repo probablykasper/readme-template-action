@@ -135,9 +135,16 @@ These are the built-in loops you can use:
             <td><code>3_MOST_STARRED_REPOS</code></td>
             <td>repos</td>
             <td>
-                Fetches your 5 most starred repos.
+                Fetches your 3 most starred repos.
                 Uses the following parameters:
-                <pre>first: 5,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:STARGAZERS, direction: DESC }</pre>
+                <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:STARGAZERS, direction: DESC }</pre>
+            </td>
+            <td><code>3_NEWEST_REPOS</code></td>
+            <td>repos</td>
+            <td>
+                Fetches your 3 most starred repos.
+                Uses the following parameters:
+                <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:CREATED_AT, direction: DESC }</pre>
             </td>
         </tr>
         <tr>

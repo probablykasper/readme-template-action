@@ -31,7 +31,7 @@ module.exports = {
 | {{ REPO_STARS }} | {{ REPO_CREATED_DATE }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end CUSTOM_PINNED_REPOS }}
 
-## 5 most starred repos table
+## 3 most starred repos table
 
 | ⭐️Stars   | 📦Repo    | 📚Description |
 | --------- | ----------- | -------------- |
@@ -39,7 +39,7 @@ module.exports = {
 | {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
 {{ end 3_MOST_STARRED_REPOS }}
 
-## 5 most starred repos list
+## 3 most starred repos list
 
 {{ loop 3_MOST_STARRED_REPOS }}
 ⭐️ {{ REPO_STARS }} [{{ REPO_FULL_NAME }}]({{ REPO_URL }}): {{ REPO_DESCRIPTION }}
@@ -69,3 +69,11 @@ module.exports = {
   - **TOTAL_REPOS_SIZE_MB**: {{ TOTAL_REPOS_SIZE_MB }}
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}
 - **TOTAL_REPOSITORIES**: {{ TOTAL_REPOSITORIES }}
+
+## 3 newest repos
+
+| ⭐️Stars   | 📦Repo    | 📚Description |
+| --------- | ----------- | -------------- |
+{{ loop 3_NEWEST_REPOS }}
+| {{ REPO_STARS }} | [{{ REPO_FULL_NAME }}]({{ REPO_URL }}) | {{ REPO_DESCRIPTION }} |
+{{ end 3_NEWEST_REPOS }}
