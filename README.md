@@ -149,6 +149,8 @@ These are the built-in loops you can use. Data is only fetched for loops you use
                 Uses the following parameters:
                 <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:STARGAZERS, direction: DESC }</pre>
             </td>
+      </tr>
+      <tr>
             <td><code>3_NEWEST_REPOS</code></td>
             <td>repos</td>
             <td>
@@ -156,6 +158,8 @@ These are the built-in loops you can use. Data is only fetched for loops you use
                 Uses the following parameters:
                 <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:CREATED_AT, direction: DESC }</pre>
             </td>
+        </tr>
+        <tr>
             <td><code>3_RECENTLY_PUSHED_REPOS</code></td>
             <td>repos</td>
             <td>
@@ -163,11 +167,6 @@ These are the built-in loops you can use. Data is only fetched for loops you use
                 Uses the following parameters:
                 <pre>first: 3,<br>privacy: PUBLIC,<br>ownerAffiliations:[OWNER],<br>orderBy: { field:PUSHED_AT, direction: DESC }</pre>
             </td>
-        </tr>
-        <tr>
-            <td><code>Loop</code></td>
-            <td>Type</td>
-            <td>Description</td>
         </tr>
     </tbody>
 </table>
