@@ -1,0 +1,9 @@
+{
+  "parserOptions": {
+      "sourceType": "module",
+  },
+  "compilerOptions": {
+    "target": "esnext",
+    "moduleResolution": "node"
+  }
+}

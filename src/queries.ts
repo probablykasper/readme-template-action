@@ -1,14 +1,13 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
-const moment = require('moment')
+import * as core from '@actions/core'
+import * as github from '@actions/github'
+import * as moment from 'moment'
 
 const ghToken = core.getInput('TOKEN', { required: true })
 core.setSecret(ghToken)
-const octokit = github.getOctokit(ghToken)
-module.exports.octokit = octokit
+export const octokit = github.getOctokit(ghToken)
 
-module.exports.getUser = async function() {
-  const queryResult = await octokit.graphql(`
+export async function getUser() {
+  const queryResult: any = await octokit.graphql(`
     query {
       viewer {
         USERNAME: login
@@ -78,9 +77,9 @@ function fixRepoValues(repo) {
   return repo
 }
 
-module.exports.getRepos = async function(args) {
+export async function getRepos(args) {
 
-  const queryResult = await octokit.graphql(`
+  const queryResult: any = await octokit.graphql(`
     query {
       viewer {
         repositories(${args}) {
@@ -123,7 +122,7 @@ module.exports.getRepos = async function(args) {
   
 }
 
-module.exports.getSpecificRepos = async function(username, repoNames) {
+export async function getSpecificRepos(username, repoNames) {
 
   let repoQueryProperties = ''
   let index = -1

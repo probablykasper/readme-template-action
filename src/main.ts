@@ -1,13 +1,12 @@
-const core = require('@actions/core')
-const fs = require('fs')
-const moment = require('moment')
-const queries = require('./queries.js')
-const {
-  newErr,
-  trimRightChar, 
+import * as core from '@actions/core'
+import * as fs from 'fs'
+import * as moment from 'moment'
+import * as queries from './queries'
+import {
+  trimRightChar,
   deleteFirstLine,
   deleteLastLine,
-} = require('./utils.js')
+} from './utils'
 
 // parses first found only
 function parseBlock(str, openStr, closeStr) {
@@ -29,6 +28,17 @@ function parseBlock(str, openStr, closeStr) {
   return { beforeBlock, block, afterBlock }
 }
 
+type Moment = typeof moment
+type CustomTemplate = {
+  [name: string]: {
+    type: string
+    repos?: string[]
+    params?: string
+    modifyVariables?: (repo: any, moment: Moment, user: any) => any
+    loop?: boolean
+    query?: (octokit: any, moment: Moment, user: any) => any
+  }
+}
 function getCustomTemplate(str) {
   const parsed = parseBlock(str, '// {{ TEMPLATE: }}', '// {{ :TEMPLATE }}')
   if (!parsed) return { customTemplate: {}, outputStr: str }
@@ -36,7 +46,7 @@ function getCustomTemplate(str) {
   parsed.afterBlock = deleteFirstLine(parsed.afterBlock)
 
   const requireFromString = require('require-from-string')
-  const parsedCustomTemplate = requireFromString(parsed.block)
+  const parsedCustomTemplate: CustomTemplate = requireFromString(parsed.block)
 
   return {
     customTemplate: parsedCustomTemplate,
@@ -70,8 +80,8 @@ async function run() {
   try {
 
     let templatePath = core.getInput('TEMPLATE', { required: true })
-    console.log('template:', templatePath)
-    if (!fs.existsSync(templatePath)) throw newErr('Template file not found')
+    console.log('Template:', templatePath)
+    if (!fs.existsSync(templatePath)) throw 'Template file not found'
     const templateFile = fs.readFileSync(templatePath).toString()
 
     let outputPath = core.getInput('OUTPUT', { required: true })
@@ -156,7 +166,7 @@ async function run() {
           outputStr = inject(outputStr, resultObject)
         }
         
-      } else {
+      } else if (template.type) {
         throw new Error(`Invalid template type "${template.type}"`)
       }
     }
@@ -164,9 +174,11 @@ async function run() {
     fs.writeFileSync(outputPath, outputStr)
 
   } catch (error) {
-    if (!error || !error.logMessageOnly) {
-      console.log(error)
+    console.log(error)
+    if (typeof error === 'string') {
+      core.setFailed(error)
+    } else {
+      core.setFailed(error.message)
     }
-    core.setFailed(error.message)
   }
 }
