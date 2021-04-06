@@ -14,7 +14,7 @@ inputs:
     required: true
     default: README.md
 runs:
-  using: node14
+  using: node12
   main: dist/index.js
 branding:
   icon: book-open
