@@ -31,7 +31,7 @@ function parseBlock(str, openStr, closeStr) {
 
 function getCustomTemplate(str) {
   const parsed = parseBlock(str, '// {{ TEMPLATE: }}', '// {{ :TEMPLATE }}')
-  if (!parsed) return {}
+  if (!parsed) return { customTemplate: {}, outputStr: str }
   parsed.beforeBlock = deleteLastLine(parsed.beforeBlock)
   parsed.afterBlock = deleteFirstLine(parsed.afterBlock)
 
