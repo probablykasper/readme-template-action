@@ -16,7 +16,7 @@ By default, it takes `TEMPLATE.md` and outputs `README.md`.
 
 ## Example usage
 
-Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_TEMPLATE.md) for more examples and their outputs.
+Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_OUTPUT.md) for more examples and their outputs.
 
 Workflow:
 
@@ -173,7 +173,7 @@ These are the built-in loops you can use. Data is only fetched for loops you use
 
 ## Advanced usage
 
-Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_TEMPLATE.md) to see examples and their outputs.
+Check out [`EXAMPLE_TEMPLATE.md`](./EXAMPLE_TEMPLATE.md) and [`EXAMPLE_OUTPUT.md`](./EXAMPLE_OUTPUT.md) to see examples and their outputs.
 
 For advanced usage, add a code block like this to your template:
 
