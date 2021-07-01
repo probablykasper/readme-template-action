@@ -186,7 +186,8 @@ module.exports = {
 // {{ :TEMPLATE }}
 ````
 
-To get a list of specific repos:
+### List specific repos
+Get a list of specific repos
 
 ```js
   CUSTOM_PINNED_REPOS: {
@@ -195,7 +196,8 @@ To get a list of specific repos:
   },
 ```
 
-To get repos using custom parameters:
+### Repos with custom parameters
+Get repos using custom parameters:
 
 ```js
   "2_MOST_STARRED_REPOS": {
@@ -209,6 +211,7 @@ To get repos using custom parameters:
   },
 ```
 
+### Modify variables
 Add a `modifyVariables` function to overwrite/add variables:
 
 ```js
@@ -222,7 +225,7 @@ Add a `modifyVariables` function to overwrite/add variables:
   },
 ```
 
-Add a custom query:
+### Custom queries
 
 ```js
   LATEST_VIDL_RELEASE: {
