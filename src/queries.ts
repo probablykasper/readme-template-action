@@ -6,6 +6,11 @@ const ghToken = core.getInput('TOKEN', { required: true })
 core.setSecret(ghToken)
 export const octokit = github.getOctokit(ghToken)
 
+export function getCurrentRepoFullName() {
+  const currentRepoFullName = process.env.GITHUB_REPOSITORY
+  return {'CURRENT_REPO_FULL_NAME': currentRepoFullName}
+}
+
 export async function getUser() {
   const queryResult: any = await octokit.graphql(`
     query {

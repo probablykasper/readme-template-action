@@ -8,11 +8,11 @@ By default, it takes `TEMPLATE.md` and outputs `README.md`.
 
 ## Inputs
 
-| name         | type   | default         | description |
-| ------------ | ------ | --------------- | ----------- |
-| token        | string |                 | GitHub personal access token used to fetch data. Pass a secret by for instance using `${{ secrets.README_TEMPLATE_TOKEN }}`. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate one with the `read:user` scope
-| template     | string | `"TEMPLATE.md"` | Template file path
-| readme       | string | `"README.md"`   | Output file path
+| name         | required | type   | default         | description |
+| ------------ | ---      | ------ | --------------- | ----------- |
+| token        | yes      | string |                 | GitHub personal access token used to fetch data. Pass a secret by for instance using `${{ secrets.README_TEMPLATE_TOKEN }}`. [Go here](https://github.com/settings/tokens/new?scopes=read:user) to generate one with the `read:user` scope
+| template     | yes      | string | `"TEMPLATE.md"` | Template file path
+| readme       | yes      | string | `"README.md"`   | Output file path
 
 ## Example usage
 
@@ -99,6 +99,7 @@ My most starred repos:
 | {{ TOTAL_REPOS_SIZE_MB }} | 707.5
 | {{ TOTAL_REPOS_SIZE_GB }} | 0.71
 | {{ TOTAL_REPOSITORIES }}  | 46
+| {{ CURRENT_REPO_FULL_NAME }} | probablykasper/readme-template-action
 
 ### Variables you can put inside `repo` loops
 

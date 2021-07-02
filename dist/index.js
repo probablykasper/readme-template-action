@@ -11549,6 +11549,10 @@ var github = __nccwpck_require__(438);
 const ghToken = core.getInput('TOKEN', { required: true });
 core.setSecret(ghToken);
 const octokit = github.getOctokit(ghToken);
+function getCurrentRepoFullName() {
+    const currentRepoFullName = process.env.GITHUB_REPOSITORY;
+    return { 'CURRENT_REPO_FULL_NAME': currentRepoFullName };
+}
 async function getUser() {
     const queryResult = await octokit.graphql(`
     query {
@@ -11811,6 +11815,11 @@ async function run() {
         const user = await getUser();
         console.log('    - Injecting');
         outputStr = inject(outputStr, user);
+        console.log('Current repository name');
+        console.log('    - Fetching');
+        const currentRepo = getCurrentRepoFullName();
+        console.log('    - Injecting');
+        outputStr = inject(outputStr, currentRepo);
         if (!customTemplate['3_MOST_STARRED_REPOS']) {
             customTemplate['3_MOST_STARRED_REPOS'] = {
                 type: 'repos',
