@@ -15919,9 +15919,9 @@ var github = __nccwpck_require__(5438);
 const ghToken = core.getInput('TOKEN', { required: true });
 core.setSecret(ghToken);
 const octokit = github.getOctokit(ghToken);
-function getCurrentRepoFullName() {
-    const currentRepoFullName = process.env.GITHUB_REPOSITORY;
-    return { 'CURRENT_REPO_FULL_NAME': currentRepoFullName };
+function getRepoFullName() {
+    const repoFullName = process.env.GITHUB_REPOSITORY;
+    return { 'REPO_FULL_NAME': repoFullName };
 }
 function getRepoName() {
     const fullname = process.env.GITHUB_REPOSITORY ?? "";
@@ -16190,11 +16190,11 @@ async function run() {
         const user = await getUser();
         console.log('    - Injecting');
         outputStr = inject(outputStr, user);
-        console.log('Current repository name');
+        console.log('Repository full Name');
         console.log('    - Fetching');
-        const currentRepo = getCurrentRepoFullName();
+        const repoFullName = getRepoFullName();
         console.log('    - Injecting');
-        outputStr = inject(outputStr, currentRepo);
+        outputStr = inject(outputStr, repoFullName);
         console.log('Repository Name');
         console.log('    - Fetching');
         const repoName = getRepoName();

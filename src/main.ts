@@ -95,11 +95,11 @@ async function run() {
     console.log('    - Injecting')
     outputStr = inject(outputStr, user)
 
-    console.log('Current repository name')
+    console.log('Repository full Name')
     console.log('    - Fetching')
-    const currentRepo = queries.getCurrentRepoFullName()
+    const repoFullName = queries.getRepoFullName()
     console.log('    - Injecting')
-    outputStr = inject(outputStr, currentRepo)
+    outputStr = inject(outputStr, repoFullName)
 
     console.log('Repository Name')
     console.log('    - Fetching')
