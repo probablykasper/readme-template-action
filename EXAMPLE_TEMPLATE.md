@@ -6,7 +6,7 @@ module.exports = {
   CUSTOM_PINNED_REPOS: {
     type: 'specificRepos',
     repos: [
-      'vidl',
+      'probablykasper/vidl',
       'golang/go',
       'probablykasper/embler',
     ],
@@ -31,7 +31,7 @@ module.exports = {
       // You can do anything  you want with the GitHub API here.
       const result = await octokit.graphql(`
         query {
-          repository(name: "vidl", owner: "${user.USERNAME}") {
+          repository(name: "vidl", owner: "probablykasper") {
             releases(last: 1) {
               edges {
                 node {
@@ -99,9 +99,6 @@ module.exports = {
   - **TOTAL_REPOS_SIZE_MB**: {{ TOTAL_REPOS_SIZE_MB }}
   - **TOTAL_REPOS_SIZE_GB**: {{ TOTAL_REPOS_SIZE_GB }}
 - **TOTAL_REPOSITORIES**: {{ TOTAL_REPOSITORIES }}
-
-## Current Repository
-{{ CURRENT_REPO_FULL_NAME }}
 
 ## 3 most starred repos
 

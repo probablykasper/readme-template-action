@@ -42,9 +42,6 @@
   - **TOTAL_REPOS_SIZE_GB**: 1.35
 - **TOTAL_REPOSITORIES**: 64
 
-## Current Repository
-probablykasper/readme-template-action
-
 ## 3 most starred repos
 
 | ⭐️Stars   | 📦Repo    | 📚Description |

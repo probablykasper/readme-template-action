@@ -6,9 +6,15 @@ const ghToken = core.getInput('TOKEN', { required: true })
 core.setSecret(ghToken)
 export const octokit = github.getOctokit(ghToken)
 
-export function getCurrentRepoFullName() {
-  const currentRepoFullName = process.env.GITHUB_REPOSITORY
-  return {'CURRENT_REPO_FULL_NAME': currentRepoFullName}
+export function getRepoFullName() {
+  const repoFullName = process.env.GITHUB_REPOSITORY
+  return {'REPO_FULL_NAME': repoFullName}
+}
+
+export function getRepoName() {
+  const fullname = process.env.GITHUB_REPOSITORY ?? "";
+  const repoName = fullname.split("/")[1];
+  return { 'REPO_NAME': repoName };
 }
 
 export async function getUser() {

@@ -99,7 +99,8 @@ My most starred repos:
 | {{ TOTAL_REPOS_SIZE_MB }} | 707.5
 | {{ TOTAL_REPOS_SIZE_GB }} | 0.71
 | {{ TOTAL_REPOSITORIES }}  | 46
-| {{ CURRENT_REPO_FULL_NAME }} | probablykasper/readme-template-action
+| {{ REPO_FULL_NAME }}      | probablykasper/readme-template-action
+| {{ REPO_NAME }}           | readme-template-action
 
 ### Variables you can put inside `repo` loops
 

@@ -95,11 +95,17 @@ async function run() {
     console.log('    - Injecting')
     outputStr = inject(outputStr, user)
 
-    console.log('Current repository name')
+    console.log('Repository full Name')
     console.log('    - Fetching')
-    const currentRepo = queries.getCurrentRepoFullName()
+    const repoFullName = queries.getRepoFullName()
     console.log('    - Injecting')
-    outputStr = inject(outputStr, currentRepo)
+    outputStr = inject(outputStr, repoFullName)
+
+    console.log('Repository Name')
+    console.log('    - Fetching')
+    const repoName = queries.getRepoName()
+    console.log('    - Injecting')
+    outputStr = inject(outputStr, repoName)
 
     if (!customTemplate['3_MOST_STARRED_REPOS']) {
       customTemplate['3_MOST_STARRED_REPOS'] = {
