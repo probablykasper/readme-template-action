@@ -101,6 +101,12 @@ async function run() {
     console.log('    - Injecting')
     outputStr = inject(outputStr, currentRepo)
 
+    console.log('Repository Name')
+    console.log('    - Fetching')
+    const repoName = queries.getRepoName()
+    console.log('    - Injecting')
+    outputStr = inject(outputStr, repoName)
+
     if (!customTemplate['3_MOST_STARRED_REPOS']) {
       customTemplate['3_MOST_STARRED_REPOS'] = {
         type: 'repos',

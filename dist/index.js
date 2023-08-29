@@ -15923,6 +15923,11 @@ function getCurrentRepoFullName() {
     const currentRepoFullName = process.env.GITHUB_REPOSITORY;
     return { 'CURRENT_REPO_FULL_NAME': currentRepoFullName };
 }
+function getRepoName() {
+    const fullname = process.env.GITHUB_REPOSITORY ?? "";
+    const repoName = fullname.split("/")[1];
+    return { 'REPO_NAME': repoName };
+}
 async function getUser() {
     const queryResult = await octokit.graphql(`
     query {
@@ -16190,6 +16195,11 @@ async function run() {
         const currentRepo = getCurrentRepoFullName();
         console.log('    - Injecting');
         outputStr = inject(outputStr, currentRepo);
+        console.log('Repository Name');
+        console.log('    - Fetching');
+        const repoName = getRepoName();
+        console.log('    - Injecting');
+        outputStr = inject(outputStr, repoName);
         if (!customTemplate['3_MOST_STARRED_REPOS']) {
             customTemplate['3_MOST_STARRED_REPOS'] = {
                 type: 'repos',

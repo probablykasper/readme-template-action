@@ -11,6 +11,12 @@ export function getCurrentRepoFullName() {
   return {'CURRENT_REPO_FULL_NAME': currentRepoFullName}
 }
 
+export function getRepoName() {
+  const fullname = process.env.GITHUB_REPOSITORY ?? "";
+  const repoName = fullname.split("/")[1];
+  return { 'REPO_NAME': repoName };
+}
+
 export async function getUser() {
   const queryResult: any = await octokit.graphql(`
     query {
